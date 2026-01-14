@@ -4,7 +4,6 @@ from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-# import uvicorn
 
 from pymongo import MongoClient
 from bson import ObjectId
@@ -18,9 +17,6 @@ PASSWORD=os.getenv("PASSWORD")
 
 MONGO_URL=f"mongodb+srv://{USER_NAME}:{PASSWORD}@testing.fyevyj5.mongodb.net/?appName=Testing"
 
-
-# FRONTEND_URL = os.getenv("FRONTEND_URL")
-# MONGO_URL = os.getenv("MONGODB_URL")
 DB_NAME = os.getenv("DB_NAME")
 
 app.add_middleware(
@@ -80,11 +76,3 @@ def delete_note(note_id: str):
     if result.deleted_count == 0:
         raise HTTPException(status_code=404, detail= "Note not found")
     return {"message": "Note Deleted"}
-
-# if __name__ == "__main__":
-#     uvicorn.run(
-#         "main:app",
-#         host="0.0.0.0",
-#         port=8000
-#     )
-    
